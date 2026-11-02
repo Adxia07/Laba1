@@ -47,3 +47,18 @@ def classify_architecture(n_cpu: int, has_network: bool) -> str:
     if has_network:
         return "распределённая"
     return "многопроцессорная" if n_cpu > 1 else "однопроцессорная"
+
+def _make_task(row: dict) -> Task:
+    hardness = str(row["hardness"]).strip().lower()
+    if hardness not in ("жёсткое", "твёрдое", "мягкое"):
+        raise ValueError(f"Неизвестный класс жёсткости: {row['hardness']!r}")
+    task = Task(str(row["name"]).strip(), hardness, float(row["C"]), float(row["D"]), float(row["T"]))
+    if task.C <= 0 or task.D <= 0 or task.T <= 0:
+        raise ValueError(f"C, D, T должны быть > 0: {task.name}")
+    return task
+
+def load_json(path: Path) -> tuple[list[Task], int, bool]:
+    data = json.loads(path.read_text(encoding="utf-8"))
+    system = data["system"]
+    tasks = [_make_task(r) for r in data["tasks"]]
+    return tasks, int(system["cpus"]), bool(system["network"])
