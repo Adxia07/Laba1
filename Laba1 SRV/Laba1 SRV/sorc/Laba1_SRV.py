@@ -14,7 +14,7 @@ class Task:
     C: float
     D: float
     T: float
-
+# Функции
 def slack(task: Task) -> float:
     return task.D - task.C
 
@@ -47,7 +47,7 @@ def classify_architecture(n_cpu: int, has_network: bool) -> str:
     if has_network:
         return "распределённая"
     return "многопроцессорная" if n_cpu > 1 else "однопроцессорная"
-
+# Ввод данных
 def _make_task(row: dict) -> Task:
     hardness = str(row["hardness"]).strip().lower()
     if hardness not in ("жёсткое", "твёрдое", "мягкое"):
@@ -62,7 +62,7 @@ def load_json(path: Path) -> tuple[list[Task], int, bool]:
     system = data["system"]
     tasks = [_make_task(r) for r in data["tasks"]]
     return tasks, int(system["cpus"]), bool(system["network"])
-
+# Вывод данных
 def _fmt(x: float) -> str:
     return f"{x:g}"
 
