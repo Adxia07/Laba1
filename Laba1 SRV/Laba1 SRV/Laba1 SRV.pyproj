@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>e18e10cf-7717-4b18-8e4c-09a5859e87f6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Laba1_SRV.py</StartupFile>
+    <StartupFile>sorc\Laba1_SRV.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Laba1_SRV.py" />
+    <Compile Include="sorc\Laba1_SRV.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data\" />
+    <Folder Include="sorc\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\variant.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
